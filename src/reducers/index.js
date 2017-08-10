@@ -6,13 +6,17 @@ import {
   GET_ERROR,
   GET_TOP_RATED,
   GET_UPCOMING_MOVIES,
-  GET_POPULAR_MOVIES
+  GET_POPULAR_MOVIES,
+  //REMOVE
+  GET_DETAILS
 } from "../actions";
 
 const initialState = {
   movies: [],
   subheader: "",
-  hasErrored: "No Errors ☺"
+  hasErrored: "No Errors ☺",
+  //remove
+  details: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,6 +30,11 @@ const reducer = (state = initialState, action) => {
       newState.movies = action.payload;
       console.log("GET_NOW_PLAYING action returned:", newState.movies);
       newState.subheader = "NOW PLAYING";
+      return newState;
+    //REMOVE
+    case GET_DETAILS:
+      newState.details = action.payload;
+      console.log(newState.details);
       return newState;
     case GET_TOP_RATED:
       newState.movies = action.payload;

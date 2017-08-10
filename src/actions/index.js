@@ -3,7 +3,7 @@
 //example request: https://api.themoviedb.org/3/movie/550?api_key=756d51b27574d082bdec5ff892e27bbe
 // const BASE_URL = "https://api.themoviedb.org/3/movie/?";
 
-// const API_KEY = "&api_key=756d51b27574d082bdec5ff892e27bbe";
+const API_KEY = "&api_key=756d51b27574d082bdec5ff892e27bbe";
 
 //Direct API calls///
 // const URL = {
@@ -26,6 +26,8 @@ export const GET_TOP_RATED = "GET_TOP_RATED";
 export const GET_UPCOMING_MOVIES = "GET_UPCOMING_MOVIES";
 export const GET_POPULAR_MOVIES = "GET_POPULAR_MOVIES";
 export const GET_ERROR = "GET_ERROR";
+//REMOVE
+export const GET_DETAILS = "GET_DETAILS";
 
 const getMovie = movieQuery => {
   return {
@@ -62,6 +64,14 @@ const getPopularMovies = popularMovies => {
   };
 };
 
+//REMOVE
+const getDetails = foundDetail => {
+  return {
+    type: GET_DETAILS,
+    payload: foundDetail
+  };
+};
+
 const getErrors = errors => {
   return {
     type: GET_ERROR,
@@ -82,6 +92,24 @@ export const movieGetter = movieTitle => {
       .then(foundMovie => {
         console.log(`Movie(s) found for ${query}:`, foundMovie);
         dispatch(getMovie(foundMovie));
+      })
+      .catch(err => dispatch(getErrors(err)));
+  };
+};
+
+//REMOVE
+
+export const detailGetter = movieDetail => {
+  return dispatch => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/315635?api_key=756d51b27574d082bdec5ff892e27bbe`
+    )
+      .then(response => {
+        return response.json();
+      })
+      .then(foundDetail => {
+        console.log(`Movie(s) found for`, foundDetail);
+        dispatch(getDetails(foundDetail));
       })
       .catch(err => dispatch(getErrors(err)));
   };
