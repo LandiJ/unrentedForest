@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 //REMOVE
 import { connect } from "react-redux";
-import { detailGetter } from "../../actions";
+import { detailGetter, getValues } from "../../actions";
 import { bindActionCreators } from "redux";
 
 class DetailList extends Component {
@@ -13,8 +13,14 @@ class DetailList extends Component {
   render() {
     return (
       <div>
+        <h1> {this.props.details.title}</h1>
         <ul className="list-wrapper">
-          <li className="list-item">Primary info</li>
+          <li
+            onClick={() => this.props.getValues(this.props.details.title)}
+            className="list-item"
+          >
+            Primary info
+          </li>
           <li className="list-item">Alternative titles</li>
           <li className="list-item">Cast</li>
           <li className="list-item">Crew</li>
@@ -39,7 +45,10 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ detailGetter: detailGetter }, dispatch);
+  return bindActionCreators(
+    { detailGetter: detailGetter, getValues: getValues },
+    dispatch
+  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailList);

@@ -8,7 +8,8 @@ import {
   GET_UPCOMING_MOVIES,
   GET_POPULAR_MOVIES,
   //REMOVE
-  GET_DETAILS
+  GET_DETAILS,
+  GET_VALUES
 } from "../actions";
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
   subheader: "",
   hasErrored: "No Errors ☺",
   //remove
-  details: []
+  details: [],
+  values: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -35,6 +37,10 @@ const reducer = (state = initialState, action) => {
     case GET_DETAILS:
       newState.details = action.payload;
       console.log(newState.details);
+      return newState;
+    case GET_VALUES:
+      newState.values = action.payload;
+      console.log(newState.values);
       return newState;
     case GET_TOP_RATED:
       newState.movies = action.payload;

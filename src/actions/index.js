@@ -28,6 +28,7 @@ export const GET_POPULAR_MOVIES = "GET_POPULAR_MOVIES";
 export const GET_ERROR = "GET_ERROR";
 //REMOVE
 export const GET_DETAILS = "GET_DETAILS";
+export const GET_VALUES = "GET_VALUES";
 
 const getMovie = movieQuery => {
   return {
@@ -64,11 +65,18 @@ const getPopularMovies = popularMovies => {
   };
 };
 
-//REMOVE
+//REMOVE BOTH
 const getDetails = foundDetail => {
   return {
     type: GET_DETAILS,
     payload: foundDetail
+  };
+};
+
+export const getValues = values => {
+  return {
+    type: GET_VALUES,
+    payload: values
   };
 };
 
@@ -116,7 +124,7 @@ export const detailGetter = movieDetail => {
 };
 
 export const playingNowMovies = moviesNowPlaying => {
-  console.log('moviesNowPlaying: ', moviesNowPlaying);
+  console.log("moviesNowPlaying: ", moviesNowPlaying);
   return dispatch => {
     fetch(URL.nowPlaying)
       .then(response => {
@@ -132,11 +140,11 @@ export const playingNowMovies = moviesNowPlaying => {
 };
 
 export const upcomingMovies = upcoming => {
-  console.log('upcoming: ', upcoming);
+  console.log("upcoming: ", upcoming);
   return dispatch => {
     fetch(URL.upcoming)
       .then(response => {
-        console.log('response: ', response);
+        console.log("response: ", response);
         return response.json();
       })
       .then(moviesComingSoon => {
@@ -147,11 +155,11 @@ export const upcomingMovies = upcoming => {
 };
 
 export const topRatedMovies = topRatedMovies => {
-  console.log('topRatedMovies: ', topRatedMovies);
+  console.log("topRatedMovies: ", topRatedMovies);
   return dispatch => {
     fetch(URL.topRated)
       .then(response => {
-        console.log('response: ', response);
+        console.log("response: ", response);
         return response.json();
       })
       .then(topRated => {
@@ -168,7 +176,7 @@ export const popularMovies = popular => {
         return response.json();
       })
       .then(popularMovies => {
-        console.log('popularMovies: ', popularMovies);
+        console.log("popularMovies: ", popularMovies);
         dispatch(getPopularMovies(popularMovies.results));
       })
       .catch(err => dispatch(getErrors(err)));

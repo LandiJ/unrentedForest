@@ -1,13 +1,27 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { detailGetter, getValues } from "../../actions";
+
+import { bindActionCreators } from "redux";
 
 class DetailValues extends Component {
   render() {
     return (
       <div className="value-wrapper">
-        <h1>Movie Details</h1>
+
+        <p>{this.props.values}</p>
       </div>
     );
   }
 }
 
-export default DetailValues;
+const mapStateToProps = state => {
+  console.log("VALUES state: ", state);
+  return {
+    values: state.titles.values
+  };
+};
+
+const mapDispatchToProps = dispatch => {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailValues);
