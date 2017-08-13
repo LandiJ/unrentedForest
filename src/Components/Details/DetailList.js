@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-
-//REMOVE
 import { connect } from "react-redux";
-import { detailGetter } from "../../actions";
-import { bindActionCreators } from "redux";
+// import './main.css';
 
 class DetailList extends Component {
   render() {
