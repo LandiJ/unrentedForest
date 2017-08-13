@@ -6,25 +6,22 @@ import { detailGetter } from "../../actions";
 import { bindActionCreators } from "redux";
 
 class DetailList extends Component {
-  //REMOVE
-  componentWillMount() {
-    this.props.detailGetter();
-  }
   render() {
+    console.log(this.props.movieDetails);
     return (
       <div>
-        <ul className="list-wrapper">
-          <li className="list-item">Primary info</li>
-          <li className="list-item">Alternative titles</li>
-          <li className="list-item">Cast</li>
-          <li className="list-item">Crew</li>
-          <li className="list-item">Images</li>
-          <li className="list-item">Plot keywords</li>
-          <li className="list-item">Release information</li>
-          <li className="list-item">Trailers</li>
-          <li className="list-item">Translations</li>
-          <li className="list-item">Similar movies</li>
-          <li className="list-item">Reviews</li>
+        <ul>
+          <li>Primary info</li>
+          <li>Alternative titles</li>
+          <li>Cast</li>
+          <li>Crew</li>
+          <li>Images</li>
+          <li>Plot keywords</li>
+          <li>Release information</li>
+          <li>Trailers</li>
+          <li>Translations</li>
+          <li>Similar movies</li>
+          <li>Reviews</li>
         </ul>
       </div>
     );
@@ -32,14 +29,12 @@ class DetailList extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("state: ", state);
   return {
-    details: state.titles.details
+    subheader: state.titles.subheader,
+    movieDetails: state.titles.movieDetails
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ detailGetter: detailGetter }, dispatch);
-};
+const mapDispatchToProps = () => {};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailList);
